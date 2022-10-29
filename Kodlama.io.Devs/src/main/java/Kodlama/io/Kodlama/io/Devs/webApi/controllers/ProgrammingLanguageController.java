@@ -49,7 +49,7 @@ public class ProgrammingLanguageController {
 	}
 
 	@PutMapping("/{id}")
-	public void update(@RequestBody ProgrammingLanguage programmingLanguage, @PathVariable int id) throws Exception {
-		languageService.update(programmingLanguage, id);
+	public void update(@RequestBody ProgrammingLanguage programmingLanguage) throws Exception {
+		languageService.update(programmingLanguage);
 	}
 }

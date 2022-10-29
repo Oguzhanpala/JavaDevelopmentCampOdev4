@@ -23,31 +23,29 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
 
 	@Override
 	public ProgrammingLanguage getById(int id) throws Exception {
-
+		if (!isIdExist(id)) {
+			throw new Exception("Geçersiz id");
+		}
 		return languageRepository.getById(id);
 	}
 
 	@Override
 	public void add(ProgrammingLanguage programmingLanguage) throws Exception {
-		
-/*		for (ProgrammingLanguage pLanguage : getAll()) {
-			if (programmingLanguage.getName().equals(pLanguage.getName())) {
-				throw new Exception("İsim zaten kayıtlıdır.");
-			}	
-		}
-		for (ProgrammingLanguage pLanguage : getAll()) {
-			if (programmingLanguage.getId()==pLanguage.getId()) {
-				throw new Exception("Girilen id kayıtlıdır.");
-			}
-		}
-		if (programmingLanguage.getName().isEmpty()) {
-			throw new Exception("İsim boş geçilemez");
-		}  																								*/
-		
+
+		/*
+		 * for (ProgrammingLanguage pLanguage : getAll()) { if
+		 * (programmingLanguage.getName().equals(pLanguage.getName())) { throw new
+		 * Exception("İsim zaten kayıtlıdır."); } } for (ProgrammingLanguage pLanguage :
+		 * getAll()) { if (programmingLanguage.getId()==pLanguage.getId()) { throw new
+		 * Exception("Girilen id kayıtlıdır."); } } if
+		 * (programmingLanguage.getName().isEmpty()) { throw new
+		 * Exception("İsim boş geçilemez"); }
+		 */
+
 		if (isIdExist(programmingLanguage.getId())) {
 			throw new Exception("Girilen id kayıtlı");
 		}
-		if (isNameExist(programmingLanguage) || programmingLanguage.getName().isEmpty()) {
+		if (isNameExist(programmingLanguage)) {
 			throw new Exception("Girilen isim kayıtlı yada değer girilmemiş");
 		}
 		languageRepository.add(programmingLanguage);
@@ -56,38 +54,43 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
 
 	@Override
 	public void delete(int id) throws Exception {
+		if (!isIdExist(id)) {
+			throw new Exception("Geçersiz id");
+		}
 		languageRepository.delete(id);
 
 	}
 
 	@Override
-	public void update(ProgrammingLanguage programmingLanguage, int id) throws Exception {
+	public void update(ProgrammingLanguage programmingLanguage) throws Exception {
 		if (!isIdExist(programmingLanguage.getId())) {
 			throw new Exception("Geçersiz id");
 		}
 		if (isNameExist(programmingLanguage)) {
-			throw new Exception("Girilen isim kayıtlı");
+			throw new Exception("Girilen isim kayıtlı yada değer girilmemiş");
 		}
-		languageRepository.update(programmingLanguage,id);
+		languageRepository.update(programmingLanguage);
 
 	}
+
 	/*------------- Bir kere yaz her yerde kullan DO NOT REPEAT YOURSELF-----------*/
 	public boolean isNameExist(ProgrammingLanguage programmingLanguage) {
-		for (ProgrammingLanguage language : getAll()){
-			if (language.getName().equals(programmingLanguage.getName())) {
+		for (ProgrammingLanguage language : getAll()) {
+			if (language.getName().equals(programmingLanguage.getName()) || programmingLanguage.getName().isEmpty()) {
 				return true;
 			}
 		}
 		return false;
 	}
+
 	/*------------- Bir kere yaz her yerde kullan DO NOT REPEAT YOURSELF-----------*/
 	public boolean isIdExist(int id) {
 		for (ProgrammingLanguage language : getAll()) {
-			if (language.getId()==id) {
+			if (language.getId() == id) {
 				return true;
-				
+
 			}
-			
+
 		}
 		return false;
 	}

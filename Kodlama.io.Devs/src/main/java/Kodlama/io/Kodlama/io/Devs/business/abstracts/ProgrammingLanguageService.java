@@ -14,6 +14,6 @@ public interface ProgrammingLanguageService {
 
 	void delete(int id) throws Exception;
 
-	void update(ProgrammingLanguage programmingLanguage, int id) throws Exception;
+	void update(ProgrammingLanguage programmingLanguage) throws Exception;
 
 }

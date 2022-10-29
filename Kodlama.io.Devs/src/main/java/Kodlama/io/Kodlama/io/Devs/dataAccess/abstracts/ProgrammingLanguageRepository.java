@@ -14,6 +14,6 @@ public interface ProgrammingLanguageRepository {
 
 	void delete(int id) throws Exception;
 
-	void update(ProgrammingLanguage programmingLanguage,int id);
+	void update(ProgrammingLanguage programmingLanguage);
 
 }

@@ -39,8 +39,8 @@ public class InMemoryProgrammingLanguageRepository implements ProgrammingLanguag
 	}
 
 	@Override
-	public void update(ProgrammingLanguage programmingLanguage, int id) {
-		ProgrammingLanguage programmingLanguage2 = getById(id);
+	public void update(ProgrammingLanguage programmingLanguage) {
+		ProgrammingLanguage programmingLanguage2 = getById(programmingLanguage.getId());
 		programmingLanguage2.setName(programmingLanguage.getName());
 	}
 
