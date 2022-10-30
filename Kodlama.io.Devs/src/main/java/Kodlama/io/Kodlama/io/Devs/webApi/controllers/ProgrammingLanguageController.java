@@ -27,7 +27,7 @@ public class ProgrammingLanguageController {
 		this.languageService = languageService;
 	}
 
-	@GetMapping("/getall")
+	@GetMapping
 	public List<ProgrammingLanguage> getAll() {
 		return languageService.getAll();
 	}
@@ -38,7 +38,7 @@ public class ProgrammingLanguageController {
 
 	}
 
-	@PostMapping("/{id}")
+	@PostMapping
 	public void add(@RequestBody ProgrammingLanguage programmingLanguage) throws Exception {
 		languageService.add(programmingLanguage);
 	}
